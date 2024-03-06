@@ -8,9 +8,7 @@ namespace War_Game_2.Models
 {
     internal class Player
     {
-
-        public string Name { get; set; }
-        public List<Card> _hand = new List<Card>();
+        private List<Card> _hand = new List<Card>();
 
         public void ReceiveCard(Card card)
         {
@@ -34,16 +32,14 @@ namespace War_Game_2.Models
             }
             return readyCheck;
         }
+        public bool IsReady()
+            => _hand.Count > 0;
 
-        public void ShowHand()
+
+        public void CardLeft()
         {
-            Console.WriteLine("Karty gracza " + Name);
-            foreach (Card card in _hand)
-            {
-                Console.WriteLine(card.Name + card.Suit);
-            }
+            Console.WriteLine(_hand.Count());
         }
-
 
 
 

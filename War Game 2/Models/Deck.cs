@@ -12,25 +12,15 @@ namespace War_Game_2.Models
 
         public Deck()
         {
-            string[] name = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "As" };
-            string[] suit = { " of Hearts", " of Diamonds", " of Clubs", " of Spades" };
-            int[] value = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 };
-
-            int thisValue;
-            string thisName;
-            string thisSuit;
-
-
-            for (int i = 0; i < 13; i++)
+            _deck = new List<Card>();
+            foreach (Suit suit in Enum.GetValues(typeof(Suit)))
             {
-                thisName = name[i];
-                for (int j = 0; j < 4; j++)
+                foreach (Rank rank in Enum.GetValues(typeof(Rank)))
                 {
-                    thisSuit = suit[j];
-                    thisValue = i;
-                    _deck.Add(new Card(thisName, thisSuit, thisValue));
+                    _deck.Add(new Card(suit, rank));
                 }
             }
+
         }
 
         public void ShuffleDeck()
@@ -45,7 +35,6 @@ namespace War_Game_2.Models
                 tempDeck.Add(c);
                 _deck.RemoveAt(n);
             }
-
             _deck = tempDeck;
         }
 
@@ -57,9 +46,6 @@ namespace War_Game_2.Models
                 player2.ReceiveCard(_deck[i + 1]);
             }
         }
-
-
-
 
 
     }

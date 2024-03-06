@@ -8,16 +8,52 @@ namespace War_Game_2.Models
 {
     internal class Card
     {
-        public Card(string name, string suit, int value)
+        public Card(Suit suit, Rank rank)
         {
-            this.Name = name;
-            this.Suit = suit; //TODO enum
-            this.Value = value;
+            Suit = suit;
+            Rank = rank;
         }
-        public string Name { get; init; }
-        public int Value { get; init; }
-        public string Suit { get; init; }
+        public Rank Rank { get; init; }
+        public Suit Suit { get; init; }
 
-
+        public int CompareCards(Card oppCard)
+        {
+            if (this.Rank > oppCard.Rank)
+            {
+                return 1;
+            }
+            if (this.Rank < oppCard.Rank)
+            {
+                return -1;
+            }
+            return 0;
+        }
     }
+
+
+    public enum Suit
+    {
+        Hearts,
+        Diamonds,
+ /*       Clubs,
+        Spades*/
+    }
+
+    public enum Rank
+    {
+        Two = 2,
+        Three,
+        Four,
+/*        Five,
+        Six,
+        Seven,
+        Eight,
+        Nine,
+        Ten,
+        Jack,
+        Queen,
+        King,
+        Ace*/
+    }
+
 }
